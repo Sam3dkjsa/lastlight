@@ -8,7 +8,7 @@ From this folder, run `python3 -m http.server 3000 --bind 0.0.0.0` and open the 
 
 ## Explore the prototype
 
-The board starts with synthetic sample items. Add an entry, choose a route, use the All / Still in play / Resolved filters, mark a workflow complete, reopen or remove an item, and adjust the factor in “Show your working.” Reset sample board restores the demonstration entries and placeholder factor. Data is stored only in browser local storage on that device.
+The board starts with synthetic sample items. Add an entry, choose a route, use the All / Still in play / Resolved filters, mark a workflow complete, reopen or remove an item, and adjust the factor in “Show your working.” Deadline badges refresh while the board is open; the route-mix panel recalculates with each plan change. On small screens, a persistent quick-action bar keeps the add-item and board controls within reach. Reset sample board restores the demonstration entries and placeholder factor. Data is stored only in browser local storage on that device.
 
 ## Estimation boundaries
 

@@ -86,6 +86,19 @@
           </div>
           <div class="safe-note"><span aria-hidden="true">⌁</span><p><b>Safety, always.</b> Time estimates are not food-safety advice. Follow your local temperature, handling, and donation guidance.</p></div>
         </section>
+        <section class="route-pulse" id="route-pulse" aria-labelledby="route-pulse-heading">
+          <div class="pulse-heading"><div><span class="section-kicker">TONIGHT’S ROUTE MIX</span><h3 id="route-pulse-heading">Where plans point</h3></div><span class="pulse-live"><i aria-hidden="true"></i> LIVE</span></div>
+          <p class="pulse-helper" id="route-pulse-caption">Counts update as routes change. Bars compare each route with the busiest route.</p>
+          <div class="route-mix" id="route-mix" role="img" aria-label="Route mix across the current surplus board">
+            <div class="route-row" aria-label="Repurpose"><span>Repurpose</span><span class="route-track"><i id="route-bar-repurpose"></i></span><strong id="route-count-repurpose">0</strong></div>
+            <div class="route-row" aria-label="Staff use"><span>Staff use</span><span class="route-track"><i id="route-bar-staff"></i></span><strong id="route-count-staff">0</strong></div>
+            <div class="route-row" aria-label="Discount"><span>Discount</span><span class="route-track"><i id="route-bar-discount"></i></span><strong id="route-count-discount">0</strong></div>
+            <div class="route-row" aria-label="Donation"><span>Donation</span><span class="route-track"><i id="route-bar-donate"></i></span><strong id="route-count-donate">0</strong></div>
+            <div class="route-row" aria-label="Compost or safe disposal"><span>Compost / dispose</span><span class="route-track"><i id="route-bar-endOfLife"></i></span><strong id="route-count-endOfLife">0</strong></div>
+            <div class="route-row route-unassigned" aria-label="Not assigned"><span>Not assigned</span><span class="route-track"><i id="route-bar-unassigned"></i></span><strong id="route-count-unassigned">0</strong></div>
+          </div>
+          <p class="pulse-footnote">Counts show selected workflow routes—not recovered meals or verified waste avoided.</p>
+        </section>
         <section class="impact-note-card">
           <span class="section-kicker">HOW TO READ THE NUMBERS</span>
           <p>Every impact figure here is a <strong>transparent “what if”</strong>—built from sample entries and editable assumptions, never a scale reading or verified result.</p>
@@ -108,6 +121,11 @@
       <div class="transparency-footer"><div><span class="tool-icon" aria-hidden="true">⌘</span><p><b>Tools used</b><br>Plain HTML, CSS, and JavaScript; local browser storage; transparent arithmetic; built with the Manus web development environment. No external dataset or AI-generated impact claim is used.</p></div><div><span class="tool-icon" aria-hidden="true">◉</span><p><b>Privacy & prototype constraints</b><br>Entries and the editable factor stay in this browser’s local storage. There is no account, shared team sync, database, or connection to a donation partner.</p></div><span class="source-note">EXAMPLE DATA IS SYNTHETIC · FACTOR IS AN EDITABLE TEACHING ASSUMPTION · 16 NOV 2026</span></div>
     </section>
   </main>
+
+  <nav class="mobile-quickbar" aria-label="Quick actions">
+    <button class="button button-ink" data-open-form type="button"><span aria-hidden="true">＋</span> Log surplus</button>
+    <a href="#board" aria-label="Jump to tonight’s surplus board">Board <span aria-hidden="true">↓</span></a>
+  </nav>
 
   <footer class="page-footer"><span>LastLight <b>·</b> A food-waste prevention concept</span><span>Better end-of-day decisions, one item at a time.</span></footer>
 

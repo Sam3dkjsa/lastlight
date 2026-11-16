@@ -21,6 +21,14 @@
     dairy: { title: 'Dairy & chilled', icon: '❄', className: 'cat-dairy', suggestion: 'staff' },
     other: { title: 'Other', icon: '✳', className: 'cat-other', suggestion: '' }
   };
+  const ROUTE_ROWS = [
+    { key: 'repurpose', label: 'Repurpose' },
+    { key: 'staff', label: 'Staff use' },
+    { key: 'discount', label: 'Discount' },
+    { key: 'donate', label: 'Donation' },
+    { key: 'endOfLife', label: 'Compost or safe disposal' },
+    { key: 'unassigned', label: 'Not assigned' }
+  ];
   const $ = (selector, scope = document) => scope.querySelector(selector);
   const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
   const list = $('#inventory-list');
@@ -121,6 +129,46 @@
       });
   }
 
+  function updateRouteMix() {
+    const counts = Object.fromEntries(ROUTE_ROWS.map((route) => [route.key, 0]));
+    entries.forEach((entry) => {
+      if (entry.action === 'compost' || entry.action === 'dispose') counts.endOfLife += 1;
+      else if (Object.hasOwn(counts, entry.action)) counts[entry.action] += 1;
+      else counts.unassigned += 1;
+    });
+    const busiest = Math.max(1, ...Object.values(counts));
+    const assigned = entries.length - counts.unassigned;
+    ROUTE_ROWS.forEach(({ key, label }) => {
+      const value = counts[key];
+      $(`#route-count-${key}`).textContent = String(value);
+      $(`#route-bar-${key}`).style.setProperty('--bar-width', `${value ? Math.max(5, (value / busiest) * 100) : 0}%`);
+      $(`#route-bar-${key}`).parentElement.setAttribute('aria-label', `${label}: ${value} ${value === 1 ? 'item' : 'items'}`);
+    });
+    $('#route-pulse-caption').textContent = entries.length
+      ? `${assigned} of ${entries.length} ${entries.length === 1 ? 'item has' : 'items have'} a route. Bars compare counts with the busiest route.`
+      : 'No items on the board yet. Bars will appear when a route is chosen.';
+    $('#route-mix').setAttribute('aria-label', `${entries.length} items on board. ${ROUTE_ROWS.map(({ key, label }) => `${label}: ${counts[key]}`).join('; ')}.`);
+  }
+
+  function refreshLiveUrgency() {
+    let urgent = 0;
+    const open = entries.filter((entry) => !entry.completed);
+    open.forEach((entry) => {
+      const urgency = timeLeft(entry.until);
+      if (urgency.level === 'urgent' || urgency.level === 'overdue') urgent += 1;
+      const card = list.querySelector(`[data-entry-id="${CSS.escape(String(entry.id))}"]`);
+      const badge = card && $('[data-urgency-badge]', card);
+      if (!badge) return;
+      Array.from(card.classList).filter((className) => className.startsWith('urgency-')).forEach((className) => card.classList.remove(className));
+      card.classList.add(`urgency-${urgency.level}`);
+      badge.innerHTML = `<span class="badge-dot"></span>${escapeHTML(urgency.label)}`;
+      badge.setAttribute('aria-label', `${urgency.label}; ${formatUntil(entry.until)}`);
+      badge.title = formatUntil(entry.until);
+    });
+    $('#urgent-count').textContent = `${urgent} need${urgent === 1 ? 's' : ''} a look soon`;
+    $('#hero-guidance').textContent = urgent ? `${urgent} ${urgent === 1 ? 'item is' : 'items are'} closest to its use-by window.` : 'Every good plan starts with a clear count.';
+  }
+
   function render() {
     const nowEntries = getFilteredSorted();
     list.innerHTML = nowEntries.map((entry) => {
@@ -134,7 +182,7 @@
         <div class="item-top">
           <div class="item-identity"><span class="category-icon ${category.className}" aria-hidden="true">${category.icon}</span><div><h3 class="item-title">${escapeHTML(entry.name)}</h3><span class="item-subtitle">${escapeHTML(category.title)} · ${escapeHTML(formatUntil(entry.until))}</span></div></div>
           <div class="quantity-block"><span class="quantity-value">${escapeHTML(formatQuantity(entry))}</span><span class="quantity-estimate">≈ ${estimatedKg(entry).toFixed(2)} kg estimated mass</span></div>
-          <span class="urgency-badge"><span class="badge-dot"></span>${escapeHTML(urgency.label)}</span>
+          <span class="urgency-badge" data-urgency-badge aria-label="${escapeHTML(urgency.label)}; ${escapeHTML(formatUntil(entry.until))}" title="${escapeHTML(formatUntil(entry.until))}"><span class="badge-dot"></span>${escapeHTML(urgency.label)}</span>
         </div>
         ${entry.notes ? `<p class="item-notes">${escapeHTML(entry.notes)}</p>` : ''}
         <div class="item-controls"><label class="route-label" for="action-${escapeHTML(entry.id)}">ROUTE</label><select class="route-select" id="action-${escapeHTML(entry.id)}" data-action-select="${escapeHTML(entry.id)}" aria-label="Choose an action for ${escapeHTML(entry.name)}">${actionOptions}</select>
@@ -162,6 +210,7 @@
     $('#filter-done-count').textContent = String(done.length);
     $('#factor-input').value = impactFactor.toFixed(1);
     $('#today-label').textContent = `CAFÉ CLOSE · ${new Intl.DateTimeFormat(undefined, { weekday: 'short', month: 'short', day: 'numeric' }).format(new Date()).toUpperCase()}`;
+    updateRouteMix();
   }
 
   function notify(message) {
@@ -299,6 +348,11 @@
       render();
     }
   });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) refreshLiveUrgency();
+  });
+  window.setInterval(refreshLiveUrgency, 30_000);
 
   render();
 })();
