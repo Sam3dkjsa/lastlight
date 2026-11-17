@@ -233,3 +233,110 @@ main{max-width:1260px;margin:auto;padding:0 34px}.hero{position:relative;display
     padding-bottom: 10px;
   }
 }
+
+
+/* Review pass: reserve tomato red for genuinely time-urgent inventory. */
+:root { --muted: #535449; --donation: #557f98; }
+.brand-dot, .eyebrow-dot, .heading-period, .route-number, .safe-note > span,
+.empty-mark, .page-footer b, .mini-sun { color: var(--leaf); }
+.eyebrow-dot { background: var(--leaf); }
+.top-nav a:hover, .inline-link:hover, .text-button:hover { color: var(--leaf); }
+.button:focus-visible, .filter-tab:focus-visible, .text-button:focus-visible,
+.small-save:focus-visible, .dialog-close:focus-visible, .delete-button:focus-visible {
+  outline: 3px solid rgba(71,114,77,.34);
+  outline-offset: 2px;
+}
+.metric-co2 > strong { color: var(--ink); }
+.route-row:nth-child(4) .route-track i { background: var(--donation); }
+.action-card h3 em { color: var(--leaf); }
+.method-stamp { border-color: var(--leaf); color: #36583b; }
+.formula { border-left-color: var(--leaf); }
+.factor-warning { color: #565447 !important; }
+.tool-icon.privacy-lock { width: 19px; height: 19px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Make the primary task visible immediately and let the board enter the first desktop screen. */
+.hero { min-height: 0; padding: 16px 38px; }
+.hero h1 { margin-top: 8px; margin-bottom: 6px; font-size: clamp(40px,4.2vw,50px); line-height: .95; }
+.hero-intro { font-size: 14px; line-height: 1.4; }
+.hero-actions { display: flex; align-items: center; gap: 16px; margin-top: 10px; }
+.hero-primary { min-height: 42px; padding: 11px 17px; font-size: 14px; }
+.hero-board-link { display: inline-flex; align-items: center; gap: 7px; min-height: 42px; color: #36583b; font-size: 14px; font-weight: 700; text-decoration: none; }
+.hero-board-link:hover { text-decoration: underline; }
+.hero-meta { margin-top: 10px; }
+.impact-strip { margin-top: 12px; }
+.impact-intro, .metric { min-height: 88px; padding-top: 13px; padding-bottom: 13px; }
+.workspace { padding-top: 22px; }
+
+/* Keep destructive action visually separate from the main completion action. */
+.delete-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  margin-left: 12px;
+  padding: 7px 11px;
+  border: 1px solid #c9c5b8;
+  border-radius: 6px;
+  background: #f3f0e7;
+  color: #45463f;
+  font: 700 11px/1 var(--sans);
+  white-space: nowrap;
+}
+.delete-button:hover { border-color: #45463f; background: #eae7de; color: #252720; }
+
+@media (max-width: 680px) {
+  .hero { padding: 22px 18px 20px; }
+  .hero h1 { font-size: 38px; margin-top: 11px; }
+  .hero-intro { max-width: none; font-size: 16px; line-height: 1.5; color: #45473f; }
+  .hero-actions { align-items: stretch; gap: 7px; margin-top: 14px; }
+  .hero-primary { flex: 0 0 auto; min-width: 150px; min-height: 48px; padding: 10px 12px; font-size: 15px; white-space: nowrap; }
+  .hero-board-link { flex: 1; justify-content: center; min-width: 0; min-height: 48px; padding: 0 5px; font-size: 13px; white-space: nowrap; }
+  .hero-meta { margin-top: 14px; gap: 10px; }
+  .date-stamp { font-size: 10px; }
+  .privacy-note { font-size: 13px; color: #45473f; }
+  .hero-note { margin-top: 14px; }
+  .note-top, .note-foot { font-size: 12px; color: #535449; }
+  .impact-intro strong { font-size: 16px; }
+  .metric-label { font-size: 10px; color: #535449; }
+  .metric-caption { font-size: 12px; color: #535449; line-height: 1.35; }
+  .section-heading h2 { font-size: 25px; }
+  .section-heading .eyebrow, .eyebrow, .section-kicker { font-size: 11px; letter-spacing: .75px; }
+  .section-subtitle { max-width: none; font-size: 16px; color: #45473f; line-height: 1.45; }
+  .board-footnote { font-size: 14px; color: #45473f; }
+  .filter-tab, .text-button { font-size: 13px; }
+  .item-title { font-size: 16px; }
+  .item-subtitle, .quantity-estimate { font-size: 13px; color: #55564c; }
+  .quantity-value { font-size: 16px; }
+  .urgency-badge { font-size: 11px; }
+  .item-notes { font-size: 16px; color: #45473f; }
+  .dialog-intro, .form-safety { font-size: 16px; line-height: 1.45; color: #45473f; }
+  .route-label { font-size: 11px; color: #45473f; }
+  .route-select { max-width: 100%; font-size: 14px; }
+  .action-state, .item-complete-note { font-size: 13px; color: #45473f; }
+  .resolve-button { min-height: 44px; font-size: 13px; padding: 9px 11px; }
+  .delete-button { min-width: 68px; min-height: 44px; margin-left: 12px; padding: 9px 12px; font-size: 13px; }
+  .action-card > p, .safe-note p, .impact-note-card p, .pulse-helper,
+  .pulse-footnote, .board-footnote, .method-card p, .method-limits li,
+  .transparency-footer p { font-size: 16px; line-height: 1.5; color: #45473f; }
+  .route-list b { font-size: 15px; }
+  .route-list small { font-size: 16px; line-height: 1.4; color: #45473f; }
+  .safe-note { color: #45473f; }
+  .inline-link { font-size: 14px; }
+  .method-index { font-size: 12px; color: #535449; }
+  .method-card h3 { font-size: 19px; }
+  .method-stamp { font-size: 10px; }
+  .formula { font-size: 15px; line-height: 1.45; }
+  .factor-label { font-size: 14px; }
+  .factor-label span, .factor-control > span { font-size: 13px; color: #45473f; }
+  .factor-control input, .small-save { min-height: 42px; font-size: 14px; }
+  .factor-warning { font-size: 14px !important; line-height: 1.45; color: #45473f !important; }
+  .how-chips span { font-size: 10px; }
+  .source-note { font-size: 11px; color: #45473f; line-height: 1.45; letter-spacing: .45px; }
+  .page-footer { font-size: 13px; color: #535449; }
+  .mobile-quickbar .button, .mobile-quickbar a { font-size: 14px; }
+}
+
+@media (max-width: 360px) {
+  .hero-primary { min-width: 137px; font-size: 14px; }
+  .hero-board-link { font-size: 12px; }
+}

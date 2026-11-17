@@ -187,7 +187,7 @@
         ${entry.notes ? `<p class="item-notes">${escapeHTML(entry.notes)}</p>` : ''}
         <div class="item-controls"><label class="route-label" for="action-${escapeHTML(entry.id)}">ROUTE</label><select class="route-select" id="action-${escapeHTML(entry.id)}" data-action-select="${escapeHTML(entry.id)}" aria-label="Choose an action for ${escapeHTML(entry.name)}">${actionOptions}</select>
           ${entry.completed ? `<span class="item-complete-note">Closed as: ${escapeHTML(actionLabel)} · workflow only</span><button type="button" class="resolve-button undo" data-undo="${escapeHTML(entry.id)}">Reopen</button>` : `<span class="action-state">${entry.action ? `${scenarioKg.toFixed(2)} kg potential*` : 'Choose an action'}</span><button type="button" class="resolve-button" data-resolve="${escapeHTML(entry.id)}" ${entry.action ? '' : 'disabled title="Choose a route first"'}>Mark complete</button>`}
-          <button type="button" class="delete-button" data-delete="${escapeHTML(entry.id)}" aria-label="Remove ${escapeHTML(entry.name)} from the board" title="Remove item">×</button>
+          <button type="button" class="delete-button" data-delete="${escapeHTML(entry.id)}" aria-label="Delete ${escapeHTML(entry.name)}" title="Delete this item">Delete</button>
         </div>
       </article>`;
     }).join('');
@@ -210,6 +210,7 @@
     $('#filter-done-count').textContent = String(done.length);
     $('#factor-input').value = impactFactor.toFixed(1);
     $('#today-label').textContent = `CAFÉ CLOSE · ${new Intl.DateTimeFormat(undefined, { weekday: 'short', month: 'short', day: 'numeric' }).format(new Date()).toUpperCase()}`;
+    $('#source-date-label').textContent = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).format(new Date()).toUpperCase();
     updateRouteMix();
   }
 
@@ -304,10 +305,12 @@
         notify('Item reopened on the board.');
       }
     } else if (deleteButton) {
+      const entry = entries.find((item) => item.id === deleteButton.dataset.delete);
+      if (!entry || !window.confirm(`Delete “${entry.name}” from this browser’s board? This cannot be undone.`)) return;
       entries = entries.filter((item) => item.id !== deleteButton.dataset.delete);
       persist();
       render();
-      notify('Item removed from this browser’s board.');
+      notify('Item deleted from this browser’s board.');
     }
   });
 

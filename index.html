@@ -34,6 +34,7 @@
         <p class="eyebrow"><span class="eyebrow-dot"></span> A SMALL-CAFÉ FOOD-WASTE PROTOTYPE</p>
         <h1 id="hero-title">Tonight’s surplus.<br><span>A second chance.</span></h1>
         <p class="hero-intro">A calmer closing shift starts with knowing what to use, share, or safely compost before it’s too late.</p>
+        <div class="hero-actions"><button class="button button-ink hero-primary" data-open-form type="button"><span aria-hidden="true">＋</span> Log surplus</button><a class="hero-board-link" href="#board">Go to tonight’s board <span aria-hidden="true">↓</span></a></div>
         <div class="hero-meta"><span class="date-stamp" id="today-label">CAFÉ CLOSE · TODAY</span><span class="privacy-note"><span aria-hidden="true">⌑</span> Demo data stays in this browser</span></div>
       </div>
       <aside class="hero-note" aria-label="Today’s shift status">
@@ -41,8 +42,6 @@
         <p id="hero-guidance">Every good plan starts with a clear count.</p>
         <div class="note-foot"><span id="open-count">0 items</span><span class="note-divider"></span><span id="urgent-count">0 need a look soon</span></div>
       </aside>
-      <div class="hero-sticker sticker-one" aria-hidden="true">USE<br>IT WELL <span>↗</span></div>
-      <div class="hero-sticker sticker-two" aria-hidden="true">GOOD FOOD<br>GOES FURTHER</div>
     </section>
 
     <section class="impact-strip" aria-label="Illustrative dashboard totals">
@@ -118,7 +117,7 @@
         <article class="method-card method-model"><span class="method-index">03 / THE MODEL</span><h3>A scenario, with the maths in view.</h3><div class="formula">estimated edible food diverted × demo factor = illustrative CO₂e scenario</div><p>Each route has an explicitly assumed success share; composting and disposal receive <strong>zero</strong> avoided-food credit in this simple model.</p><label class="factor-label" for="factor-input">Editable demo factor <span>kg CO₂e per kg potentially eaten</span></label><div class="factor-control"><input id="factor-input" type="number" min="0" max="10" step="0.1" value="1.8" inputmode="decimal"><span>kg CO₂e / kg</span><button id="factor-save" class="small-save" type="button">Apply</button></div><p class="factor-warning" id="factor-warning" aria-live="polite">Illustrative placeholder only—not a location-specific or independently sourced emissions factor.</p></article>
         <article class="method-card method-limits"><span class="method-index">04 / BOUNDARIES</span><h3>Useful prototype. Honest limits.</h3><ul><li>Sample café items are synthetic examples, not records from a real business.</li><li>Non-weight units use rough demo conversions: <b>1 portion = 0.25 kg</b>; <b>1 item = 0.18 kg</b>.</li><li>Route success shares are assumptions: repurpose 90%, staff use 85%, discount 70%, donation 80%; compost/disposal 0%.</li><li>The default emissions factor is a user-editable placeholder, not a cited lifecycle assessment.</li><li>“Resolved” means the user closed a workflow—not that food was eaten, transferred, or independently verified.</li><li>Estimates omit transport, refrigeration, packaging, local grid mix, food type, and rebound effects. Actual impact may differ materially.</li></ul></article>
       </div>
-      <div class="transparency-footer"><div><span class="tool-icon" aria-hidden="true">⌘</span><p><b>Tools used</b><br>Plain HTML, CSS, and JavaScript; local browser storage; transparent arithmetic; built with the Manus web development environment. No external dataset or AI-generated impact claim is used.</p></div><div><span class="tool-icon" aria-hidden="true">◉</span><p><b>Privacy & prototype constraints</b><br>Entries and the editable factor stay in this browser’s local storage. There is no account, shared team sync, database, or connection to a donation partner.</p></div><span class="source-note">EXAMPLE DATA IS SYNTHETIC · FACTOR IS AN EDITABLE TEACHING ASSUMPTION · 16 NOV 2026</span></div>
+      <div class="transparency-footer"><div><span class="tool-icon" aria-hidden="true">⌘</span><p><b>Tools used</b><br>Plain HTML, CSS, and JavaScript; local browser storage; transparent arithmetic; built with the Manus web development environment. No external dataset or AI-generated impact claim is used.</p></div><div><svg class="tool-icon privacy-lock" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10" width="15" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg><p><b>Privacy & prototype constraints</b><br>Entries and the editable factor stay in this browser’s local storage. There is no account, shared team sync, database, or connection to a donation partner.</p></div><span class="source-note">EXAMPLE DATA IS SYNTHETIC · FACTOR IS AN EDITABLE TEACHING ASSUMPTION · <span id="source-date-label">17 NOV 2026</span></span></div>
     </section>
   </main>
 
